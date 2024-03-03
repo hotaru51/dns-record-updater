@@ -1,0 +1,5 @@
+domain: example.com
+access_token: PERSONAL_ACCESS_TOKEN
+records:
+  - rrset_name
+  - rrset_name
