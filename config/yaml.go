@@ -17,3 +17,8 @@ func getExecutableDirectoryPath() string {
 
 	return executableDir
 }
+func isConfigFileExists(filePath string) bool {
+	_, err := os.Stat(filePath)
+
+	return err == nil
+}
