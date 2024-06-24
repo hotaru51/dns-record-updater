@@ -37,3 +37,12 @@ func selectConfigFilePath() string {
 
 	return ""
 }
+
+func loadYamlFile(filepath string) string {
+	b, err := os.ReadFile(filepath)
+	if err != nil {
+		log.Fatalf("cannot read file: %s\n", filepath)
+	}
+
+	return string(b)
+}
