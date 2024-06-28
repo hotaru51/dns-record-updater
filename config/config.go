@@ -1,9 +1,10 @@
 package config
 
 type Config struct {
-	Domain string
-	AccessToken string
-	Records []string
+	Domain string		`yaml:"domain"`
+	AccessToken string	`yaml:"access_token"`
+	Records []string	`yaml:"records"`
+}
 }
 
 const (
