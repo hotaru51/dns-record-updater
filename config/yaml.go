@@ -4,6 +4,8 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+
+	"gopkg.in/yaml.v3"
 )
 
 func getExecutableDirectoryPath() string {
@@ -45,4 +47,15 @@ func loadYamlFile(filepath string) string {
 	}
 
 	return string(b)
+}
+
+func parseYaml(text string) *Config {
+	config := &Config{}
+
+	err := yaml.Unmarshal([]byte(text), config)
+	if err != nil {
+		log.Fatalf("failed to parse yaml\n")
+	}
+
+	return config
 }
