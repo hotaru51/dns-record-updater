@@ -1,10 +1,17 @@
 package config
 
+import (
+	"fmt"
+)
+
 type Config struct {
 	Domain string		`yaml:"domain"`
 	AccessToken string	`yaml:"access_token"`
 	Records []string	`yaml:"records"`
 }
+
+func (c *Config) String() string {
+	return fmt.Sprintf("domain: %s, access_token: ***, records: %v", c.Domain, c.Records)
 }
 
 const (
