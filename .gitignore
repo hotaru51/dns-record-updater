@@ -21,3 +21,5 @@
 go.work
 
 dns-record-updater
+
+config.yaml

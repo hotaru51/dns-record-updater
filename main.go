@@ -1,9 +1,13 @@
 package main
 
 import (
-	"fmt"
+	"log"
+
+	"github.com/hotaru51/dns-record-updater/config"
 )
 
 func main() {
-	fmt.Println("dns-record-updater")
+	log.Println("load config file")
+	config := config.LoadConfig()
+	log.Println(config)
 }
