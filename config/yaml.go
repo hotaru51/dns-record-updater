@@ -59,3 +59,14 @@ func parseYaml(text string) *Config {
 
 	return config
 }
+
+func LoadConfig() *Config {
+	path := selectConfigFilePath()
+	if len(path) <= 0 {
+		log.Fatalln("config file not found")
+	}
+
+	text := loadYamlFile(path)
+
+	return parseYaml(text)
+}
