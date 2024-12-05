@@ -4,6 +4,7 @@ package myip
 import (
 	"net/http"
 	"io"
+	"strings"
 )
 
 const (
@@ -25,5 +26,5 @@ func GetMyIP() string {
 		return ""
 	}
 
-	return string(b)
+	return strings.Trim(string(b), "\n")
 }
