@@ -5,6 +5,7 @@ import (
 
 	"github.com/hotaru51/dns-record-updater/config"
 	"github.com/hotaru51/dns-record-updater/myip"
+	"github.com/hotaru51/dns-record-updater/gandi"
 )
 
 func main() {
@@ -12,4 +13,6 @@ func main() {
 	config := config.LoadConfig()
 	log.Println(config)
 	log.Println(myip.GetMyIP())
+	gc := gandi.NewClient(config.AccessToken)
+	log.Printf("%v\n", gc)
 }
