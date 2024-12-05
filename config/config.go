@@ -22,7 +22,6 @@ func (c *Config) String() string {
 }
 
 const (
-	API_ENDPOINT = "https://api.gandi.net/v5/livedns/domains" // Gandi APIエンドポイント
 	CONFIG_FILE_PATH = "/etc/htrap/dns-record-updater" // 設定ファイル配置場所
 	CONFIG_FILE_NAME = "config.yaml" // 設定ファイル名
 )
