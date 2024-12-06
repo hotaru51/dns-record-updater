@@ -2,6 +2,7 @@
 package gandi
 
 import (
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -31,4 +32,14 @@ func NewClient(token string) *Client {
 	}
 
 	return c
+}
+
+/*
+トークン設定済みのリクエストのベースを生成
+*/
+func (c *Client) newBaseRequest(method string, url string, body io.Reader) *http.Request {
+	r, _ := http.NewRequest(method, url, body)
+	r.Header.Add("Authorization", "Bearer " + c.token)
+
+	return r
 }
