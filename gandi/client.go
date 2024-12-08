@@ -16,6 +16,7 @@ Gnadi API実行用のHTTPクライアント
 */
 type Client struct {
 	baseUrl *url.URL
+	domain string
 	token string
 	client *http.Client
 }
@@ -23,10 +24,11 @@ type Client struct {
 /*
 クライアントを生成する
 */
-func NewClient(token string) *Client {
+func NewClient(domain string, token string) *Client {
 	u, _ := url.Parse(API_ENDPOINT)
 	c := &Client{
 		baseUrl: u,
+		domain: domain,
 		token: token,
 		client: &http.Client{},
 	}

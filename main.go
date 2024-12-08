@@ -13,6 +13,6 @@ func main() {
 	config := config.LoadConfig()
 	log.Println(config)
 	log.Println(myip.GetMyIP())
-	gc := gandi.NewClient(config.AccessToken)
+	gc := gandi.NewClient(config.Domain, config.AccessToken)
 	log.Printf("%v\n", gc)
 }
