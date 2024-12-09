@@ -6,7 +6,7 @@ import (
 )
 
 /*
-プリケーションの設定値を保持
+アプリケーションの設定値を保持
 */
 type Config struct {
 	Domain string		`yaml:"domain"` // 設定対象のドメイン
