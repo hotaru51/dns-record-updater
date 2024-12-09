@@ -15,4 +15,10 @@ func main() {
 	log.Println(myip.GetMyIP())
 	gc := gandi.NewClient(config.Domain, config.AccessToken)
 	log.Printf("%v\n", gc)
+	records, err := gc.GetRecords()
+	if err == nil {
+		for _, r := range records {
+			log.Println(r)
+		}
+	}
 }
