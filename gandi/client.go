@@ -16,10 +16,10 @@ const (
 Gnadi API実行用のHTTPクライアント
 */
 type Client struct {
-	baseUrl *url.URL
-	domain string
-	token string
-	client *http.Client
+	baseUrl *url.URL     // APIエンドポイントのベースURL
+	domain string        // 対象ドメイン
+	token string         // Gandi APIのトークン
+	client *http.Client  // HTTPクライアント
 }
 
 /*
