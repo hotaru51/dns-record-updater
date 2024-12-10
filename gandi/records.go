@@ -8,7 +8,7 @@ import (
 /*
 DNSレコード
 */
-type Record struct {
+type DomainRecordResult struct {
 	RrsetName   string   `json:"rrset_name"`   // レコード名
 	RrsetTTL    int      `json:"rrset_ttl"`    // TTL
 	RrsetType   string   `json:"rrset_type"`   // レコードタイプ
@@ -19,7 +19,7 @@ type Record struct {
 /*
 Recordを文字列で返す
 */
-func (r *Record) String() string {
+func (r *DomainRecordResult) String() string {
 	return fmt.Sprintf(
 		"name: %s, TTL: %d, type: %s, value: %v",
 		r.RrsetName,
