@@ -51,7 +51,7 @@ func (c *Client) newBaseRequest(method string, url string, body io.Reader) *http
 DNSレコードを取得する
 	対象はAレコードのみ
 */
-func (c *Client) GetRecords() ([]*Record, error) {
+func (c *Client) GetRecords() ([]*DomainRecordResult, error) {
 	url := c.baseUrl.JoinPath(c.domain, "records")
 	q := url.Query()
 	q.Add("rrset_type", "A")
@@ -69,7 +69,7 @@ func (c *Client) GetRecords() ([]*Record, error) {
 		return nil, err
 	}
 
-	var record []*Record
+	var record []*DomainRecordResult
 	err = json.Unmarshal(b, &record)
 	if err != nil {
 		return nil, err
