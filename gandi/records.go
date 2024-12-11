@@ -17,7 +17,7 @@ type DomainRecordResult struct {
 }
 
 /*
-Recordを文字列で返す
+DomainRecordResultを文字列で返す
 */
 func (r *DomainRecordResult) String() string {
 	return fmt.Sprintf(
