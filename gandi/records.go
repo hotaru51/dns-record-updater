@@ -44,3 +44,15 @@ func (r *DomainRecordResult) String() string {
 		r.RrsetValues,
 	)
 }
+
+/*
+DomainRecordRequestを文字列で返す
+*/
+func (r *DomainRecordRequest) String() string {
+	return fmt.Sprintf(
+		"name: %s, type: %s, value: %v",
+		r.RrsetName,
+		r.RrsetType,
+		r.RrsetValues,
+	)
+}
