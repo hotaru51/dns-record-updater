@@ -17,6 +17,22 @@ type DomainRecordResult struct {
 }
 
 /*
+更新リクエスト用DNSレコード
+*/
+type DomainRecordRequest struct {
+	RrsetName   string   `json:"rrset_name"`
+	RrsetType   string   `json:"rrset_type"`
+	RrsetValues []string `json:"rrset_values"`
+}
+
+/*
+更新リクエスト用DNSレコードのslice
+*/
+type DomainRecordRequestItems struct {
+	Items []*DomainRecordRequest `json:"items"`
+}
+
+/*
 DomainRecordResultを文字列で返す
 */
 func (r *DomainRecordResult) String() string {
