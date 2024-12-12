@@ -46,6 +46,17 @@ func (r *DomainRecordResult) String() string {
 }
 
 /*
+DomainRecordResultからDomainRecordRequestを生成する
+*/
+func (r *DomainRecordResult) GenerateUpdateRequest(values *[]string) *DomainRecordRequest {
+	return &DomainRecordRequest{
+		RrsetName: r.RrsetName,
+		RrsetType: r.RrsetType,
+		RrsetValues: *values,
+	}
+}
+
+/*
 DomainRecordRequestを文字列で返す
 */
 func (r *DomainRecordRequest) String() string {

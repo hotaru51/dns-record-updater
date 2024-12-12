@@ -12,13 +12,20 @@ func main() {
 	log.Println("load config file")
 	config := config.LoadConfig()
 	log.Println(config)
-	log.Println(myip.GetMyIP())
+	ip := myip.GetMyIP()
+	log.Println(ip)
 	gc := gandi.NewClient(config.Domain, config.AccessToken)
 	log.Printf("%v\n", gc)
 	records, err := gc.GetRecords()
 	if err == nil {
+		log.Println("current records")
 		for _, r := range records {
 			log.Println(r)
 		}
+	}
+	log.Println("generate update record request")
+	for _, r := range records {
+		dreq := r.GenerateUpdateRequest(&[]string{ip})
+		log.Println(dreq)
 	}
 }
