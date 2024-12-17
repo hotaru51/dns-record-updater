@@ -20,9 +20,9 @@ type DomainRecordResult struct {
 更新リクエスト用DNSレコード
 */
 type DomainRecordRequest struct {
-	RrsetName   string   `json:"rrset_name"`
-	RrsetType   string   `json:"rrset_type"`
-	RrsetValues []string `json:"rrset_values"`
+	RrsetName   string   `json:"rrset_name"`   // レコード名
+	RrsetType   string   `json:"rrset_type"`   // レコードタイプ
+	RrsetValues []string `json:"rrset_values"` // レコードの値
 }
 
 /*
