@@ -25,7 +25,10 @@ func main() {
 	}
 	log.Println("generate update record request")
 	for _, r := range records {
-		dreq := r.GenerateUpdateRequest(&[]string{ip})
-		log.Println(dreq)
+		dreq := gandi.NewDomainRecordRequestItems(ip)
+		log.Println(r)
+		for _, dr := range dreq.Items {
+			log.Println(dr)
+		}
 	}
 }

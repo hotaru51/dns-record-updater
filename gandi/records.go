@@ -20,7 +20,6 @@ type DomainRecordResult struct {
 更新リクエスト用DNSレコード
 */
 type DomainRecordRequest struct {
-	RrsetName   string   `json:"rrset_name"`   // レコード名
 	RrsetType   string   `json:"rrset_type"`   // レコードタイプ
 	RrsetValues []string `json:"rrset_values"` // レコードの値
 }
@@ -46,13 +45,16 @@ func (r *DomainRecordResult) String() string {
 }
 
 /*
-DomainRecordResultからDomainRecordRequestを生成する
+DomainRecordRequestItemsを生成する
 */
-func (r *DomainRecordResult) GenerateUpdateRequest(values *[]string) *DomainRecordRequest {
-	return &DomainRecordRequest{
-		RrsetName: r.RrsetName,
-		RrsetType: r.RrsetType,
-		RrsetValues: *values,
+func NewDomainRecordRequestItems(ipv4Value string) *DomainRecordRequestItems {
+	return &DomainRecordRequestItems{
+		Items: []*DomainRecordRequest{
+			{
+				RrsetType: "A",
+				RrsetValues: []string{ipv4Value},
+			},
+		},
 	}
 }
 
@@ -61,8 +63,7 @@ DomainRecordRequestを文字列で返す
 */
 func (r *DomainRecordRequest) String() string {
 	return fmt.Sprintf(
-		"name: %s, type: %s, value: %v",
-		r.RrsetName,
+		"type: %s, value: %v",
 		r.RrsetType,
 		r.RrsetValues,
 	)
