@@ -22,6 +22,7 @@ type DomainRecordResult struct {
 type DomainRecordRequest struct {
 	RrsetType   string   `json:"rrset_type"`   // レコードタイプ
 	RrsetValues []string `json:"rrset_values"` // レコードの値
+	RrsetTTL    int      `json:"rrset_ttl"`    // TTL
 }
 
 /*
@@ -53,6 +54,7 @@ func NewDomainRecordRequestItems(ipv4Value string) *DomainRecordRequestItems {
 			{
 				RrsetType: "A",
 				RrsetValues: []string{ipv4Value},
+				RrsetTTL: 300,
 			},
 		},
 	}
@@ -63,8 +65,9 @@ DomainRecordRequestを文字列で返す
 */
 func (r *DomainRecordRequest) String() string {
 	return fmt.Sprintf(
-		"type: %s, value: %v",
+		"type: %s, ttl: %d, value: %v",
 		r.RrsetType,
+		r.RrsetTTL,
 		r.RrsetValues,
 	)
 }
