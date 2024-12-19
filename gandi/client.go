@@ -2,6 +2,7 @@
 package gandi
 
 import (
+	"bytes"
 	"io"
 	"net/http"
 	"net/url"
@@ -76,4 +77,31 @@ func (c *Client) GetRecords() ([]*DomainRecordResult, error) {
 	}
 
 	return record, nil
+}
+
+/*
+DNSレコードを更新する
+*/
+func (c *Client) UpdateRecord(rrsetName string, records *DomainRecordRequestItems) (string, error) {
+	reqBody, err := json.Marshal(records)
+	if err != nil {
+		return "", err
+	}
+
+	url := c.baseUrl.JoinPath(c.domain, "records", rrsetName)
+	r := c.newBaseRequest("PUT", url.String(), bytes.NewReader(reqBody))
+	r.Header.Add("Content-Type", "application/json")
+
+	res, err := c.client.Do(r)
+	if err != nil {
+		return "", err
+	}
+	defer res.Body.Close()
+
+	resBody, err := io.ReadAll(res.Body)
+	if err != nil {
+		return "", err
+	}
+
+	return string(resBody), nil
 }

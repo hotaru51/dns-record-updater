@@ -31,4 +31,10 @@ func main() {
 			log.Println(dr)
 		}
 	}
+	reqBody := gandi.NewDomainRecordRequestItems(ip)
+	res, err := gc.UpdateRecord("tst", reqBody)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	log.Println(res)
 }
