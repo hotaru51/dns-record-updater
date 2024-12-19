@@ -17,7 +17,23 @@ type DomainRecordResult struct {
 }
 
 /*
-Recordを文字列で返す
+更新リクエスト用DNSレコード
+*/
+type DomainRecordRequest struct {
+	RrsetType   string   `json:"rrset_type"`   // レコードタイプ
+	RrsetValues []string `json:"rrset_values"` // レコードの値
+	RrsetTTL    int      `json:"rrset_ttl"`    // TTL
+}
+
+/*
+更新リクエスト用DNSレコードのslice
+*/
+type DomainRecordRequestItems struct {
+	Items []*DomainRecordRequest `json:"items"`
+}
+
+/*
+DomainRecordResultを文字列で返す
 */
 func (r *DomainRecordResult) String() string {
 	return fmt.Sprintf(
@@ -25,6 +41,33 @@ func (r *DomainRecordResult) String() string {
 		r.RrsetName,
 		r.RrsetTTL,
 		r.RrsetType,
+		r.RrsetValues,
+	)
+}
+
+/*
+DomainRecordRequestItemsを生成する
+*/
+func NewDomainRecordRequestItems(ipv4Value string) *DomainRecordRequestItems {
+	return &DomainRecordRequestItems{
+		Items: []*DomainRecordRequest{
+			{
+				RrsetType: "A",
+				RrsetValues: []string{ipv4Value},
+				RrsetTTL: 300,
+			},
+		},
+	}
+}
+
+/*
+DomainRecordRequestを文字列で返す
+*/
+func (r *DomainRecordRequest) String() string {
+	return fmt.Sprintf(
+		"type: %s, ttl: %d, value: %v",
+		r.RrsetType,
+		r.RrsetTTL,
 		r.RrsetValues,
 	)
 }
