@@ -46,6 +46,24 @@ func (r *DomainRecordResult) String() string {
 }
 
 /*
+レコードの更新が必要か確認する
+*/
+func (r *DomainRecordResult) ShouldUpdate(currentIp string) bool {
+	// レコードが2以上の場合は更新
+	if len(r.RrsetValues) >= 2 {
+		return true
+	}
+
+	// レコードがない場合は更新するので初期値をtrueとする
+	res := true
+	for _, v := range r.RrsetValues {
+		res = (v != currentIp)
+	}
+
+	return res
+}
+
+/*
 DomainRecordRequestItemsを生成する
 */
 func NewDomainRecordRequestItems(ipv4Value string) *DomainRecordRequestItems {
