@@ -37,3 +37,17 @@ make
 ```sh
 dns-record-updater
 ```
+
+実行例
+
+```sh
+./dns-record-updater 
+2024/12/22 12:41:04 load config file
+2024/12/22 12:41:04 executableDir: /path/to/dns-record-updater
+2024/12/22 12:41:04 config file loaded: domain: example.com, access_token: ***, records: [tst01 tst02]
+2024/12/22 12:41:04 get current global IP
+2024/12/22 12:41:04 current global ip: *.*.*.*
+2024/12/22 12:41:04 fetch currnet A records
+2024/12/22 12:41:06 num of records: 3
+2024/12/22 12:41:06 no records to update
+```
